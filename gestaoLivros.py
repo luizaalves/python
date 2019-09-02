@@ -25,16 +25,6 @@ livros = [
           }
 ]
 
-login = [
-    {
-        'id' : 1,
-        'user' : 'luiza',
-        'senha' : '1234'
-    }
-
-
-]
-
 # Como invocar na linha de comando
 #
 # curl -i http://localhost:5000/livros
@@ -42,14 +32,6 @@ login = [
 @app.route('/livros', methods=['GET'])
 def obtem_livros():
     return jsonify({'livros': livros})
-
-# Como invocar na linha de comando
-#
-# curl -i http://localhost:5000/login
-#
-@app.route('/login', methods=['GET'])
-def obtem_login():
-    return jsonify({'login': login})
 
 # Como invocar na linha de comando
 #
@@ -61,17 +43,6 @@ def detalhe_livro(idLivro):
     if len(resultado) == 0:
         abort(404)
     return jsonify({'livro': resultado[0]})
-
-# Como invocar na linha de comando
-#
-# curl -i http://localhost:5000/login/1
-#
-@app.route('/login/<string:user>', methods=['GET'])
-def detalhe_usuario(user):
-    resultado = [resultado for resultado in login if resultado['user'] == user]
-    if len(resultado) == 0:
-        abort(404)
-    return jsonify({'login': resultado[0]})
 
 # Como invocar na linha de comando
 #
